@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -49,12 +50,13 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware'
 ]
 
 ROOT_URLCONF = 'django_movie.urls'
@@ -121,6 +123,16 @@ USE_L10N = True
 
 USE_TZ = True
 
+
+gettext = lambda s: s
+LANGUAGES = (
+    ('ru', gettext('Russia')),
+    ('en', gettext('English')),
+)
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
@@ -204,8 +216,8 @@ CKEDITOR_CONFIGS = {
 }
 
 
-RECAPTCHA_PUBLIC_KEY = "6Ld2UucUAAAAAOL7lrFPDqwN5pdhNiNXK8JeWUNO"
-RECAPTCHA_PRIVATE_KEY = "6Ld2UucUAAAAAOBpI0ppCd7qvvNiLGjvnCLVykKc"
+RECAPTCHA_PUBLIC_KEY = "6Lc4sd4UAAAAALspxT-nPg4MLtb0ZD9ikf_fVFvg"
+RECAPTCHA_PRIVATE_KEY = "6Lc4sd4UAAAAANY6KDjEa0z1fhAdUo9HyGxy06Lq"
 RECAPTCHA_DEFAULT_ACTION = 'generic'
 RECAPTCHA_SCORE_THRESHOLD = 0.5
 
